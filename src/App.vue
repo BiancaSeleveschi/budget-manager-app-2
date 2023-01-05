@@ -4,8 +4,6 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </nav>
-    <h2>Gestioneaza-ti bugetul</h2>
-    <h3>Adauga cheltuieli</h3>
     <router-view />
   </div>
 </template>
