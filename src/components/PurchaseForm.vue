@@ -12,7 +12,7 @@
       type="number"
       placeholder="Pret"
     />
-    <select class="d-block m-auto p-1 my-2">
+    <select class="d-block m-auto p-1 my-2" v-model="purchase.category">
       <option
         v-for="(category, index) in this.$store.state.categories"
         :key="index"
@@ -35,13 +35,15 @@ export default {
       purchase: {
         name: "",
         price: "",
-        category: "",
+        category: this.$store.state.categories[0],
       },
     };
   },
   methods: {
     addPurchase() {
       console.log(this.purchase);
+      console.log(this.purchase.category);
+      console.log(this.purchase.category === "Mancare");
       this.$store.dispatch("addPurchase", this.purchase);
       console.log(this.purchase);
       this.purchase = {

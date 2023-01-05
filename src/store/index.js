@@ -55,19 +55,17 @@ export default new Vuex.Store({
     categories: ["Mancare", "Distractie", "Haine", "Utilitati", "Altele"],
   },
   getters: {
-    //         getCategoryWithMaxPrice: (state) => (category)
-    // {
-    //     let maxPrice = 0;
-    //     let category;
-    //     for (let i = 0; i < state.purchases.length; i++) {
-    //         if (state.purchases[i].price > maxPrice) {
-    //             maxPrice = state.purchases[i].price
-    //             category = state.purchases[i].category
-    //         }
-    //     }
-    //     return category
-    // }
-    // ,
+    getCategoryWithMaxPrice: (state) => {
+      let maxPrice = 0;
+      let category;
+      for (let i = 0; i < state.purchases.length; i++) {
+        if (state.purchases[i].price > maxPrice) {
+          maxPrice = state.purchases[i].price;
+          category = state.purchases[i].category;
+        }
+      }
+      return category;
+    },
   },
   mutations: {
     ADD_PURCHASE(state, purchase) {

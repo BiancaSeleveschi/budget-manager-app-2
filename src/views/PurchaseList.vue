@@ -33,17 +33,22 @@ export default {
   components: { PurchaseCategory, PurchaseForm, PurchaseCard },
   data() {
     return {
-      purchases: this.$store.state.purchases,
       showAllPurchases: false,
-      categoryWithMaxPrice: "",
+      categoryWithMaxPrice: this.getCategoryWithMaxPrice(),
     };
+  },
+  computed: {
+    purchases() {
+      return this.$store.state.purchases;
+    },
   },
   methods: {
     displayAllPurchases() {
       this.showAllPurchases = !this.showAllPurchases;
     },
     getCategoryWithMaxPrice() {
-      this.$store.getters.getCategoryWithMaxPrice(this.categoryWithMaxPrice);
+      // console.log(this.$store.getters.getCategoryWithMaxPrice);
+      return this.$store.getters.getCategoryWithMaxPrice;
     },
   },
 };
