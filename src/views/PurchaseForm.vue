@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="bg-success">
+    <h1 class="mb-4">Adauga cheltuieli</h1>
     <input
       v-model="purchase.name"
       class="d-block m-auto mb-2"
@@ -20,9 +21,7 @@
         {{ category }}
       </option>
     </select>
-    <button @click="addPurchase" class="btn btn-primary my-3 rounded-1">
-      Add
-    </button>
+    <button @click="addPurchase" class="add-button my-3">Add</button>
   </div>
 </template>
 

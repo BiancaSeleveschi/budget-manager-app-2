@@ -1,8 +1,13 @@
 <template>
   <div id="app">
     <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/">Home</router-link>
+      <router-link class="mx-3" :to="{ name: 'purchase-form' }"
+        >Adauga cheltuiala</router-link
+      >
+      <router-link :to="{ name: 'category-form' }"
+        >Adauga categorie</router-link
+      >
     </nav>
     <router-view />
   </div>
