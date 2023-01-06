@@ -8,13 +8,7 @@
       Cheltuieli
     </button>
     <div v-show="showAllPurchases">
-      <div
-        class="d-inline-block"
-        v-for="(purchase, index) in purchases"
-        :key="index"
-      >
-        <PurchaseCard :purchase="purchase" />
-      </div>
+      <ItemCard :purchases="purchases" />
     </div>
     <PurchaseCategory />
     <p class="my-3">
@@ -41,14 +35,13 @@
       />
       <button @click="searchByPrice" class="search-button mt-2">Search</button>
       <div v-show="showPurchaseByPrice">
-        <div
-          v-for="(purchase, index) in purchases"
-          :key="index"
-          class="d-inline-block"
-        >
-          <PurchaseCard :purchase="purchase" />
-        </div>
+        <ItemCard :purchases="purchases" />
       </div>
+    </div>
+    <div>
+      <h4 class="mt-5 mb-3">Sortarea categoriilor dupa:</h4>
+      <button @click="sortByPrice" class="btn btn-outline-success">Pret</button>
+      <ItemCard :purchases="purchasesByPrice" />
     </div>
   </div>
 </template>
@@ -57,11 +50,12 @@
 import PurchaseCard from "@/components/PurchaseCard";
 import PurchaseForm from "@/views/PurchaseForm";
 import PurchaseCategory from "@/components/PurchaseCategory";
+import ItemCard from "@/components/ItemCard";
 
 export default {
   name: "PurchaseList",
   // eslint-disable-next-line vue/no-unused-components
-  components: { PurchaseCategory, PurchaseForm, PurchaseCard },
+  components: { ItemCard, PurchaseCategory, PurchaseForm, PurchaseCard },
   data() {
     return {
       showAllPurchases: false,
@@ -69,13 +63,9 @@ export default {
       maxPrice: "",
       purchases: this.$store.state.purchases,
       showPurchaseByPrice: false,
+      purchasesByPrice: "",
     };
   },
-  // computed: {
-  //   purchases() {
-  //     return this.$store.state.purchases;
-  //   },
-  // },
   methods: {
     displayAllPurchases() {
       this.showAllPurchases = !this.showAllPurchases;
@@ -86,6 +76,9 @@ export default {
         this.minPrice
       );
       this.showPurchaseByPrice = true;
+    },
+    sortByPrice() {
+      this.purchasesByPrice = this.$store.getters.getCategoryByPrice;
     },
   },
 };

@@ -18,7 +18,7 @@ export default new Vuex.Store({
       },
       {
         name: "Concert",
-        price: 170,
+        price: 270,
         category: "Distractie",
       },
       {
@@ -32,11 +32,6 @@ export default new Vuex.Store({
         category: "Altele",
       },
       {
-        name: "Curent",
-        price: 48,
-        category: "Utilitati",
-      },
-      {
         name: "Gaz",
         price: 460,
         category: "Utilitati",
@@ -45,6 +40,11 @@ export default new Vuex.Store({
         name: "Camasa",
         price: 90,
         category: "Haine",
+      },
+      {
+        name: "Curent",
+        price: 48,
+        category: "Utilitati",
       },
       {
         name: "Pizza",
@@ -87,6 +87,31 @@ export default new Vuex.Store({
       return state.purchases.filter(
         (p) => p.price < maxPrice && p.price > minPrice
       );
+    },
+    getCategoryByPrice: (state) => {
+      return state.purchases.sort(function (a, b) {
+        if (a.price < b.price) {
+          return -1;
+        }
+        if (a.price > b.price) {
+          return 1;
+        }
+        return 0;
+      });
+    },
+    getPurchaseInCategoriesByPrice: (state) => (category) => {
+      return state.purchases
+
+        .sort(function (a, b) {
+          if (a.price < b.price) {
+            return -1;
+          }
+          if (a.price > b.price) {
+            return 1;
+          }
+          return 0;
+        })
+        .filter((p) => p.category === category);
     },
   },
   mutations: {
