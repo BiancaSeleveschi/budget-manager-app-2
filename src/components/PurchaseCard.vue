@@ -4,15 +4,16 @@
       class="m-3 p-2 rounded-2 border border-2"
       :class="{
         'bg-warning': purchase.category === 'Haine',
-        'bg-danger': purchase.category === 'Mancare',
+        'bg-secondary': purchase.category === 'Mancare',
         'bg-success': purchase.category === 'Distractie',
         'bg-primary': purchase.category === 'Utilitati',
-        'bg-secondary': purchase.category === 'Altele',
+        'bg-info': purchase.category === 'Altele',
       }"
     >
       <h3>Name: {{ purchase.name }}</h3>
       <p>Price: {{ purchase.price }}</p>
       <p>Category: {{ purchase.category }}</p>
+      <button @click="deletePurchase" class="btn btn-danger">Delete</button>
     </div>
   </div>
 </template>
@@ -24,6 +25,11 @@ export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "PurchaseCard",
   props: ["purchase"],
+  methods: {
+    deletePurchase() {
+      this.$store.dispatch("deletePurchase", this.purchase.id);
+    },
+  },
 };
 </script>
 

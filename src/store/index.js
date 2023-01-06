@@ -118,10 +118,17 @@ export default new Vuex.Store({
     ADD_PURCHASE(state, purchase) {
       state.purchases.push(purchase);
     },
+    DELETE_PURCHASE(state, id) {
+      let index = state.purchases.findIndex((p) => p.id === id);
+      state.purchases.splice(index, 1);
+    },
   },
   actions: {
     addPurchase(context, purchase) {
       context.commit("ADD_PURCHASE", purchase);
+    },
+    deletePurchase(context, id) {
+      context.commit("DELETE_PURCHASE", id);
     },
   },
   modules: {},

@@ -34,14 +34,14 @@
         placeholder="Pretul minim"
       />
       <button @click="searchByPrice" class="search-button mt-2">Search</button>
-      <div v-show="showPurchaseByPrice">
-        <ItemCard :purchases="purchases" />
-      </div>
+      <ItemCard :purchases="purchasessearchByPrice" />
     </div>
     <div>
       <h4 class="mt-5 mb-3">Sortarea categoriilor dupa:</h4>
       <button @click="sortByPrice" class="btn btn-outline-success">Pret</button>
-      <ItemCard :purchases="purchasesByPrice" />
+      <div v-show="showPurchaseByPrice">
+        <ItemCard :purchases="purchasesSortByPrice" />
+      </div>
     </div>
   </div>
 </template>
@@ -63,7 +63,8 @@ export default {
       maxPrice: "",
       purchases: this.$store.state.purchases,
       showPurchaseByPrice: false,
-      purchasesByPrice: "",
+      purchasesSortByPrice: [],
+      purchasessearchByPrice: [],
     };
   },
   methods: {
@@ -71,14 +72,14 @@ export default {
       this.showAllPurchases = !this.showAllPurchases;
     },
     searchByPrice() {
-      this.purchases = this.$store.getters.getPurchaseByPrice(
+      this.purchasessearchByPrice = this.$store.getters.getPurchaseByPrice(
         this.maxPrice,
         this.minPrice
       );
-      this.showPurchaseByPrice = true;
     },
     sortByPrice() {
-      this.purchasesByPrice = this.$store.getters.getCategoryByPrice;
+      this.purchasesSortByPrice = this.$store.getters.getCategoryByPrice;
+      this.showPurchaseByPrice = !this.showPurchaseByPrice;
     },
   },
 };
