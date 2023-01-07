@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h2 class="mb-4">Adauga categorie</h2>
     <input v-model="purchaseCategory" placeholder="category" type="text" />
     <button @click="addCategory" class="add-button">Add</button>
   </div>

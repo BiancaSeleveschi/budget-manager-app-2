@@ -77,6 +77,17 @@ export default new Vuex.Store({
       }
       return category;
     },
+    getCategoryWithMaxPrice23: (state) => {
+      let minPrice = Number.MAX_SAFE_INTEGER;
+      let category;
+      for (let i = 0; i < state.purchases.length; i++) {
+        if (state.purchases[i].price < minPrice) {
+          minPrice = state.purchases[i].price;
+          category = state.purchases[i];
+        }
+      }
+      return category;
+    },
     getPurchasesByCategory: (state) => (category) => {
       return state.purchases.filter((p) => p.category === category);
     },
@@ -118,8 +129,8 @@ export default new Vuex.Store({
     ADD_PURCHASE(state, purchase) {
       state.purchases.push(purchase);
     },
-    DELETE_PURCHASE(state, id) {
-      let index = state.purchases.findIndex((p) => p.id === id);
+    DELETE_PURCHASE(state, name) {
+      let index = state.purchases.findIndex((p) => p.name === name);
       state.purchases.splice(index, 1);
     },
   },
@@ -127,8 +138,8 @@ export default new Vuex.Store({
     addPurchase(context, purchase) {
       context.commit("ADD_PURCHASE", purchase);
     },
-    deletePurchase(context, id) {
-      context.commit("DELETE_PURCHASE", id);
+    deletePurchase(context, name) {
+      context.commit("DELETE_PURCHASE", name);
     },
   },
   modules: {},

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      class="m-3 p-2 rounded-2 border border-2"
+      class="m-3 p-2 d-inline-block rounded-2 border border-2"
       :class="{
         'bg-warning': purchase.category === 'Haine',
         'bg-secondary': purchase.category === 'Mancare',
@@ -22,12 +22,11 @@
 // (folosind un color picker) si se salveaza ca un atributa aditional pt catory
 //se fafsieaza culoarea specifica cateforiei folosind v-bind:style="background: $color}"
 export default {
-  // eslint-disable-next-line vue/multi-word-component-names
   name: "PurchaseCard",
   props: ["purchase"],
   methods: {
     deletePurchase() {
-      this.$store.dispatch("deletePurchase", this.purchase.id);
+      this.$store.dispatch("deletePurchase", this.purchase.name);
     },
   },
 };

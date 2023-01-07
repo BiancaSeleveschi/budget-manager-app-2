@@ -8,7 +8,13 @@
       Cheltuieli
     </button>
     <div v-show="showAllPurchases">
-      <ItemCard :purchases="purchases" />
+      <div
+        class="d-inline-block"
+        v-for="(purchase, index) in purchases"
+        :key="index"
+      >
+        <PurchaseCard :purchase="purchase" />
+      </div>
     </div>
     <PurchaseCategory />
     <p class="my-3">
@@ -34,28 +40,29 @@
         placeholder="Pretul minim"
       />
       <button @click="searchByPrice" class="search-button mt-2">Search</button>
-      <ItemCard :purchases="purchasessearchByPrice" />
-    </div>
-    <div>
-      <h4 class="mt-5 mb-3">Sortarea categoriilor dupa:</h4>
-      <button @click="sortByPrice" class="btn btn-outline-success">Pret</button>
       <div v-show="showPurchaseByPrice">
-        <ItemCard :purchases="purchasesSortByPrice" />
+        <ItemCard :purchases="purchases" />
       </div>
     </div>
+    <PurchaseSortedByPrice />
   </div>
 </template>
 
 <script>
 import PurchaseCard from "@/components/PurchaseCard";
-import PurchaseForm from "@/views/PurchaseForm";
 import PurchaseCategory from "@/components/PurchaseCategory";
 import ItemCard from "@/components/ItemCard";
+import PurchaseSortedByPrice from "@/components/PurchaseSortedByPrice";
 
 export default {
   name: "PurchaseList",
   // eslint-disable-next-line vue/no-unused-components
-  components: { ItemCard, PurchaseCategory, PurchaseForm, PurchaseCard },
+  components: {
+    PurchaseSortedByPrice,
+    ItemCard,
+    PurchaseCategory,
+    PurchaseCard,
+  },
   data() {
     return {
       showAllPurchases: false,
@@ -63,23 +70,24 @@ export default {
       maxPrice: "",
       purchases: this.$store.state.purchases,
       showPurchaseByPrice: false,
-      purchasesSortByPrice: [],
       purchasessearchByPrice: [],
     };
   },
+  // computed: {
+  //   purchases() {
+  //     return this.$store.state.purchases;
+  //   },
+  // },
   methods: {
     displayAllPurchases() {
       this.showAllPurchases = !this.showAllPurchases;
     },
     searchByPrice() {
-      this.purchasessearchByPrice = this.$store.getters.getPurchaseByPrice(
+      this.showPurchaseByPrice = !this.showPurchaseByPrice;
+      this.purchases = this.$store.getters.getPurchaseByPrice(
         this.maxPrice,
         this.minPrice
       );
-    },
-    sortByPrice() {
-      this.purchasesSortByPrice = this.$store.getters.getCategoryByPrice;
-      this.showPurchaseByPrice = !this.showPurchaseByPrice;
     },
   },
 };

@@ -26,12 +26,14 @@
 </template>
 
 <script>
+import { v4 as uuid } from "uuid";
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "PurchaseForm",
   data() {
     return {
       purchase: {
+        id: uuid(),
         name: "",
         price: "",
         category: this.$store.state.categories[0],

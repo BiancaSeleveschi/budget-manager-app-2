@@ -34,6 +34,12 @@ const routes = [
     name: "cheapest-category",
     component: CheapestCategory,
   },
+  // {
+  //   path: "/purchase/:id",
+  //   name: "purchase-show",
+  //   component: Purchase,
+  //   props: true,
+  // },
 ];
 
 const router = new VueRouter({
