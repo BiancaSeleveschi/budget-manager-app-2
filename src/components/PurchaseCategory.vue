@@ -15,7 +15,6 @@
 <script>
 import ButtonCategories from "@/components/ButtonCategories";
 import ItemCard from "@/components/ItemCard";
-
 export default {
   name: "PurchaseCategory",
   components: { ButtonCategories, ItemCard },

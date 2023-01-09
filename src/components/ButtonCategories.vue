@@ -6,8 +6,15 @@
       :key="index"
     >
       <button
+        :class="{
+          'bg-warning': category === 'Haine',
+          'bg-secondary': category === 'Mancare',
+          'bg-success': category === 'Distractie',
+          'bg-primary': category === 'Utilitati',
+          'bg-info': category === 'Altele',
+        }"
         @click="showPurchases(category)"
-        class="rounded-1 btn btn-warning mx-2 my-2"
+        class="rounded-1 btn mx-2 my-2"
       >
         {{ category }}
       </button>
@@ -18,9 +25,15 @@
 <script>
 export default {
   name: "ButtonCategories",
+  data() {
+    return {
+      showPurchaseByCategory: false,
+    };
+  },
   methods: {
     showPurchases(category) {
       this.$emit("show-category", category);
+      this.showPurchaseByCategory = !this.showPurchaseByCategory;
     },
   },
 };
