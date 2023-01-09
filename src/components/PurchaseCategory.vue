@@ -1,9 +1,7 @@
 <template>
   <div>
     <h4>Cheltuielile pe categorii</h4>
-    <div>
-      <ButtonCategories @show-category="showPurchasesByCategory" />
-    </div>
+    <ButtonCategories @show-category="showPurchasesByCategory" />
     <div v-show="showPurchase" class="border border-1 mb-4 p-3">
       <h4>Sorteaza categoria dupa pret</h4>
       <button @click="sortBy" class="btn btn-outline-success">Sort</button>
@@ -15,6 +13,7 @@
 <script>
 import ButtonCategories from "@/components/ButtonCategories";
 import ItemCard from "@/components/ItemCard";
+
 export default {
   name: "PurchaseCategory",
   components: { ButtonCategories, ItemCard },

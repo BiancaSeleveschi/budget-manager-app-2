@@ -27,13 +27,14 @@ export default {
   name: "ButtonCategories",
   data() {
     return {
+      active: true,
       showPurchaseByCategory: false,
+      newCategory: this.$store.state.newCategory,
     };
   },
   methods: {
     showPurchases(category) {
       this.$emit("show-category", category);
-      this.showPurchaseByCategory = !this.showPurchaseByCategory;
     },
   },
 };

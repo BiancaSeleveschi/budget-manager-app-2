@@ -2,12 +2,19 @@
   <div>
     <h3>
       Categoria este:
-      <span
-        v-show="!showPurchase"
+      <button
+        :class="{
+          'bg-warning': categoryWithMinPrice === 'Haine',
+          'bg-secondary': categoryWithMinPrice === 'Mancare',
+          'bg-success': categoryWithMinPrice === 'Distractie',
+          'bg-primary': categoryWithMinPrice === 'Utilitati',
+          'bg-info': categoryWithMinPrice === 'Altele',
+        }"
         @click="openPurchase"
-        class="bg-secondary rounded-2 p-3"
-        >{{ categoryWithMinPrice }}</span
+        class="rounded-1 btn mx-2 my-2"
       >
+        {{ categoryWithMinPrice }}
+      </button>
       <div v-for="(purchase, index) in purchases" :key="index">
         <div
           v-show="purchase.category === categoryWithMinPrice && showPurchase"

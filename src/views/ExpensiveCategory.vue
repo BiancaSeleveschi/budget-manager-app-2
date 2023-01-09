@@ -2,12 +2,19 @@
   <div>
     <h3>
       Categoria este:
-      <span
-        v-show="!showPurchase"
+      <button
+        :class="{
+          'bg-warning': categoryWithMaxPrice === 'Haine',
+          'bg-secondary': categoryWithMaxPrice === 'Mancare',
+          'bg-success': categoryWithMaxPrice === 'Distractie',
+          'bg-primary': categoryWithMaxPrice === 'Utilitati',
+          'bg-info': categoryWithMaxPrice === 'Altele',
+        }"
         @click="openPurchase"
-        class="bg-secondary rounded-2 p-3"
-        >{{ categoryWithMaxPrice }}</span
+        class="rounded-1 btn mx-2 my-2"
       >
+        {{ categoryWithMaxPrice }}
+      </button>
       <div v-for="(purchase, index) in purchases" :key="index">
         <div
           v-show="purchase.category === categoryWithMaxPrice && showPurchase"
