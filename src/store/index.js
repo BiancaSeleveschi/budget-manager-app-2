@@ -23,7 +23,7 @@ export default new Vuex.Store({
       },
       {
         name: "Festival de muzica",
-        price: 190,
+        price: 220,
         category: "Distractie",
       },
       {
@@ -99,7 +99,7 @@ export default new Vuex.Store({
         (p) => p.price < maxPrice && p.price > minPrice
       );
     },
-    getCategoryByPrice: (state) => {
+    getPurchasesSortedByPrice: (state) => {
       return state.purchases.sort(function (a, b) {
         if (a.price < b.price) {
           return -1;
@@ -109,20 +109,6 @@ export default new Vuex.Store({
         }
         return 0;
       });
-    },
-    getPurchaseInCategoriesByPrice: (state) => (category) => {
-      return state.purchases
-
-        .sort(function (a, b) {
-          if (a.price < b.price) {
-            return -1;
-          }
-          if (a.price > b.price) {
-            return 1;
-          }
-          return 0;
-        })
-        .filter((p) => p.category === category);
     },
   },
   mutations: {

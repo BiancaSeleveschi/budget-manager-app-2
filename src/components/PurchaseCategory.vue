@@ -19,19 +19,34 @@ export default {
   components: { ButtonCategories, ItemCard },
   data() {
     return {
-      purchases: this.$store.state.purchases,
+      // purchases: this.$store.state.purchases,
       showPurchase: false,
       category: "",
     };
   },
+  computed: {
+    purchases() {
+      if (this.category) {
+        return this.$store.getters.getPurchasesByCategory(this.category);
+      }
+      return this.$store.state.purchases;
+    },
+  },
   methods: {
     showPurchasesByCategory(category) {
-      this.purchases = this.$store.getters.getPurchasesByCategory(category);
+      this.category = category;
       this.showPurchase = true;
     },
-    sortBy(category) {
-      this.purchases =
-        this.$store.getters.getPurchaseInCategoriesByPrice(category);
+    sortBy() {
+      return this.purchases.sort(function (a, b) {
+        if (a.price < b.price) {
+          return -1;
+        }
+        if (a.price > b.price) {
+          return 1;
+        }
+        return 0;
+      });
     },
   },
 };

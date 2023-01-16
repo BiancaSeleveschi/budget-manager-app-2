@@ -27,6 +27,7 @@
 
 <script>
 import { v4 as uuid } from "uuid";
+
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "PurchaseForm",
